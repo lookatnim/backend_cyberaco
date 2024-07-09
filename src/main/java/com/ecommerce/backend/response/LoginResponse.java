@@ -12,7 +12,6 @@ public class LoginResponse {
     private String userName;
     private String email;
     private String mobileNumber;
-    private String password;
     private Integer userRole;
     private String token;
     private long expiresIn;
