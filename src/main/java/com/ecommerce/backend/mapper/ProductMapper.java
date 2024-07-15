@@ -11,7 +11,7 @@ public class ProductMapper {
             product.getProductName(),
             product.getPrize(),
             product.getDiscription(),
-            product.getImg()
+            product.getImages()
         );
     }
 
@@ -21,7 +21,7 @@ public class ProductMapper {
             product.getProductName(),
             product.getPrice(),
             product.getDiscription(),
-            product.getImg()
+            product.getImages()
         );
     }
 }

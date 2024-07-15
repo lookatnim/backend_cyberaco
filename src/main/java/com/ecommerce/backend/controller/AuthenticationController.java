@@ -15,6 +15,8 @@ import com.ecommerce.backend.response.LoginResponse;
 import com.ecommerce.backend.services.AuthenticationService;
 import com.ecommerce.backend.services.JwtService;
 
+import jakarta.annotation.PostConstruct;
+
 @RequestMapping("/auth")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,6 +24,11 @@ public class AuthenticationController {
     private final JwtService jwtService;
     
     private final AuthenticationService authenticationService;
+
+    @PostConstruct 
+    public void initRolesAndUsers() {
+        authenticationService.initRolesAndUsers();
+    }
 
     public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
         this.jwtService = jwtService;

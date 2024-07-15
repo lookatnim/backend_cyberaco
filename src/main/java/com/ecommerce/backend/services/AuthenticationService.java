@@ -1,9 +1,12 @@
 package com.ecommerce.backend.services;
 
+import java.util.HashSet;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ecommerce.backend.dto.LoginUserDto;
 import com.ecommerce.backend.dto.RegisterUserDto;
@@ -40,7 +43,7 @@ public class AuthenticationService {
             .setEmail(registerUserDto.getEmail())
             .setMobileNumber(registerUserDto.getMobileNumber())
             .setPassword(passwordEncoder.encode(registerUserDto.getPassword()))
-            .setUserRole(registerUserDto.getUserRole());
+            .setUserRole(2);
 
         // Logging the user object being created
         System.out.println("User object created: " + user.toString());
@@ -58,6 +61,29 @@ public class AuthenticationService {
 
         return userRepository.findByEmail(input.getEmail())
                 .orElseThrow();
+    }
+
+    @Transactional
+    public void initRolesAndUsers() {
+        User adminUser = new User();
+        adminUser.setFirstName("Admin");
+        adminUser.setLastName("Admin");
+        adminUser.setUserName("admin");
+        adminUser.setEmail("admin@cybe.com");
+        adminUser.setMobileNumber("1234567890");
+        adminUser.setPassword(passwordEncoder.encode("12345"));
+        adminUser.setUserRole(1);
+        userRepository.save(adminUser);
+        
+        User regularUser = new User();
+        regularUser.setFirstName("Tharindu");
+        regularUser.setLastName("Nimesh");
+        regularUser.setUserName("user");
+        regularUser.setEmail("user@cybe.com");
+        regularUser.setMobileNumber("1234567890");
+        regularUser.setPassword(passwordEncoder.encode("12345"));
+        regularUser.setUserRole(2);
+        userRepository.save(regularUser);
     }
 }
 

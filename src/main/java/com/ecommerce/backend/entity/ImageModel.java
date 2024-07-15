@@ -19,15 +19,19 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class ImageModel {
-    public ImageModel(String originalFilename, String contentType, String contentType2) {
-        //TODO Auto-generated constructor stub
+
+    public ImageModel(String name, String type, byte[] bs) {
+        this.name = name;
+        this.type = type;
+        this.picByte = bs;
     }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String type;
     @Column(length = 5000000)
-    private byte picByte;
+    private byte[] picByte;
 
 }

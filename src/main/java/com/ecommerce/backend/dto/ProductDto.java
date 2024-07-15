@@ -1,17 +1,23 @@
 package com.ecommerce.backend.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.ecommerce.backend.entity.ImageModel;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductDto {
-    public ProductDto(Long id2, String productName2, Number prize, String discription2, String img2) {
-        //TODO Auto-generated constructor stub
-    }
     private Long id;
     private String productName;
     private Number price;
     private String discription;
-    private String img;
+    private Set<ImageModel> images = new HashSet<>();
 }
